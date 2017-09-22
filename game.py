@@ -1,6 +1,14 @@
 import pygame
 from SpriteSheet import SpriteSheet
 
+
+#TODO: contol looping through images
+#TODO: have arrows
+#TODO: have birds flying at random
+#TODO: add power ups 
+
+
+
 pygame.init()
 
 W,H = 800, 500
@@ -58,3 +66,5 @@ while game_on:
 	s.draw_me(screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 	
 	pygame.display.flip()
+
+

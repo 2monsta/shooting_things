@@ -29,13 +29,17 @@ class SpriteSheet():
 
 	def draw_me(self, surface, cellIndex, x ,y, handle=0):
 		if(self.should_move_up):
-			self.y -= self.speed;
+			if self.y > 350:
+				self.y -= self.speed;
 		elif(self.should_move_down):
-			self.y += self.speed;
+			if self.y < 425:
+				self.y += self.speed;
 		if(self.should_move_left):
-			self.x -= self.speed;
+			if self.x > 0:
+				self.x -= self.speed;
 		elif(self.should_move_right):
-			self.x += self.speed;
+			if self.x < 750:
+				self.x += self.speed;
 		surface.blit(self.sheet,(self.x+self.handle[handle][0], self.y + self.handle[handle][1]), self.cells[cellIndex])
 
 	def should_move(self, direction, yes_or_no):
