@@ -18,7 +18,6 @@ class SpriteSheet():
 		self.should_move_left = False;
 		self.should_move_right = False;
 		self.screen = screen
-
 		self.cells = list([(index % cols * w, index / cols * h,w,h) for index in range(self.totalCellCount)])
 		self.handle = list([
 			(0,0),(-hw, 0),(-w, -hh),
