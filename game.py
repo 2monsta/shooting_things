@@ -47,13 +47,7 @@ while game_on:
 			elif event.key == pygame.K_w:
 				s.should_move("up", True)
 			elif event.key == 32:
-				# index = 5
-				# CENTER_HANDLE = 0;
-				# s.jump(True, screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 				swinging = True
-			if event.key == pygame.K_e:
-				new_arrow = Arrow(screen, s)
-				arrows.add(new_arrow)
 		elif event.type == pygame.KEYUP:
 			if event.key == pygame.K_a:
 				s.should_move("left", False)
@@ -64,20 +58,19 @@ while game_on:
 			elif event.key == pygame.K_w:
 				s.should_move("up", False)
 			elif event.key == 32:
-				# index = 5
-				# CENTER_HANDLE = 0;
-				# s.jump(False,screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 				swinging = False
-			if event.key == pygame.K_e:
-				arrows.remove()
 
 
 
 	screen.blit(background_image, [0,0])
 	if swinging == True:
 		index +=1
+		if index % 13 ==0:
+			new_arrow = Arrow(screen, s)
+			arrows.add(new_arrow)
 	elif swinging == False:
 		index = 0
+		# arrows.remove()
 	CENTER_HANDLE = 0;
 	s.draw(screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 	s.draw_me(screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
