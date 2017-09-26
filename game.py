@@ -1,5 +1,8 @@
 import pygame
 from SpriteSheet import SpriteSheet
+from pygame.sprite import Group, groupcollide
+from Arrow import Arrow
+
 
 
 #TODO: have arrows
@@ -20,6 +23,9 @@ background_image = pygame.transform.scale(background_image_original, [800, 500])
 s_original = pygame.image.load("./images/archer.png")
 # s_resize = pygame.transform.scale(s_original, [600, 470])
 s = SpriteSheet(s_original, 13, 1, screen)
+arrows = Group()
+
+
 
 game_on = True
 index = 0;
@@ -45,6 +51,9 @@ while game_on:
 				# CENTER_HANDLE = 0;
 				# s.jump(True, screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 				swinging = True
+			if event.key == pygame.K_e:
+				new_arrow = Arrow(screen, s)
+				arrows.add(new_arrow)
 		elif event.type == pygame.KEYUP:
 			if event.key == pygame.K_a:
 				s.should_move("left", False)
@@ -59,6 +68,9 @@ while game_on:
 				# CENTER_HANDLE = 0;
 				# s.jump(False,screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 				swinging = False
+			if event.key == pygame.K_e:
+				arrows.remove()
+
 
 
 	screen.blit(background_image, [0,0])
@@ -69,6 +81,10 @@ while game_on:
 	CENTER_HANDLE = 0;
 	s.draw(screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 	s.draw_me(screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
+	for arr in arrows:
+		arr.draw_bullet()
+		arr.update()
 	pygame.display.flip()
+		
 
 
