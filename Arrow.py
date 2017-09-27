@@ -5,7 +5,7 @@ class Arrow(Sprite):
 	def __init__(self, screen, spritesheet):
 		super(Arrow, self).__init__();
 		self.image_original = pygame.image.load("./images/arrow1b.png")
-		self.image = pygame.transform.scale(self.image_original, [100,100])
+		self.image = pygame.transform.scale(self.image_original, [70,70])
 		self.screen = screen
 		self.rect = pygame.Rect(0,0,10,10)
 		self.rect.centerx = spritesheet.x

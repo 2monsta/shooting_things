@@ -2,11 +2,11 @@ import pygame
 from SpriteSheet import SpriteSheet
 from pygame.sprite import Group, groupcollide
 from Arrow import Arrow
+from Enemy import Enemy
 
 
 
-#TODO: have arrows
-#TODO: have birds flying at random
+#TODO: collision detection
 #TODO: add power ups 
 
 
@@ -21,14 +21,14 @@ screen = pygame.display.set_mode((W,H))
 background_image_original = pygame.image.load("./images/background3.png")
 background_image = pygame.transform.scale(background_image_original, [800, 500])
 s_original = pygame.image.load("./images/archer.png")
-# s_resize = pygame.transform.scale(s_original, [600, 470])
 s = SpriteSheet(s_original, 13, 1, screen)
 arrows = Group()
-
+bird = Enemy(screen, 5, 4, 10, 100)
 
 
 game_on = True
 index = 0;
+index_bird = 0
 tick = 0
 swinging = False;
 while game_on:
@@ -60,9 +60,11 @@ while game_on:
 			elif event.key == 32:
 				swinging = False
 
-
-
 	screen.blit(background_image, [0,0])
+	CENTER_HANDLE_BIRD = 0;
+	index_bird +=1
+	bird.update(screen, index_bird%s.totalCellCount, CENTER_HANDLE_BIRD)
+	bird.draw(screen, index_bird%s.totalCellCount, CENTER_HANDLE_BIRD)
 	if swinging == True:
 		index +=1
 		if index % 13 ==0:
@@ -70,7 +72,6 @@ while game_on:
 			arrows.add(new_arrow)
 	elif swinging == False:
 		index = 0
-		# arrows.remove()
 	CENTER_HANDLE = 0;
 	s.draw(screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
 	s.draw_me(screen, index%s.totalCellCount, 600, 350, CENTER_HANDLE)
