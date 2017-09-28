@@ -30,4 +30,5 @@ class Arrow(Sprite):
 			self.rect.x = self.x #update rect position
 	def draw_bullet(self):
 		# pygame.draw.rect(self.screen, self.color, self.rect)
+		self.rect = pygame.Rect(self.x, self.y,10,10)
 		self.screen.blit(self.image, [self.x -15, self.y - 15])

@@ -25,6 +25,7 @@ class SpriteSheet():
 			(0, -h), (-hw, -h), (-w, -h)
 		])
 		self.rect = pygame.Rect(self.x, self.y, 50, 50)
+		self.count = 0
 	def draw(self, surface, cellIndex, x ,y, handle=0):
 		surface.blit(self.sheet,(self.x+self.handle[handle][0], self.y + self.handle[handle][1]), self.cells[cellIndex])
 		self.rect = pygame.Rect(self.x, self.y, 50, 50)

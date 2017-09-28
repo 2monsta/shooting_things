@@ -24,7 +24,11 @@ s_original = pygame.image.load("./images/archer.png")
 s = SpriteSheet(s_original, 13, 1, screen)
 arrows = Group()
 bird = Enemy(screen, 5, 4, 10, 100)
+enemy_group = Group()
+enemy_group.add(bird)
 
+def check_collision():
+	pygame.sprite.groupcollide(arrows, enemy_group, False, True)
 
 game_on = True
 index = 0;
@@ -63,8 +67,14 @@ while game_on:
 	screen.blit(background_image, [0,0])
 	CENTER_HANDLE_BIRD = 0;
 	index_bird +=1
-	bird.update(screen, index_bird%s.totalCellCount, CENTER_HANDLE_BIRD)
-	bird.draw(screen, index_bird%s.totalCellCount, CENTER_HANDLE_BIRD)
+	if len(enemy_group) ==0:
+		new_bird = Enemy(screen, 5, 4, 40, 150)
+		enemy_group.add(new_bird);
+	else:
+		for bir in enemy_group:
+			bir.update(screen, index_bird%s.totalCellCount, CENTER_HANDLE_BIRD)
+			bir.draw(screen, index_bird%s.totalCellCount, CENTER_HANDLE_BIRD)
+	check_collision()
 	if swinging == True:
 		index +=1
 		if index % 13 ==0:
